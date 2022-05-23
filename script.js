@@ -51,15 +51,6 @@ function currentLocationWeather(response) {
   todaysLowTemp.innerHTML = Math.round(response.data.main.temp_min);
   let weatherIcon = document.querySelector("#main-weather-icon");
   let weatherDescription = response.data.weather.description;
-  if (weatherDescription === "clear sky") {
-    weatherIcon.innerHTML = "☀";
-  } else if (weatherDescription === "broken clouds") {
-    weatherIcon.innerHTML = "⛅";
-  } else if (weatherDescription === "overcast clouds") {
-    weatherIcon.innerHTML = "☁";
-  } else if (weatherDescription === "light rain") {
-    weatherIcon.innerHTML = "☔";
-  }
 }
 function getLocation(position) {
   let latitude = position.coords.latitude;
@@ -87,15 +78,6 @@ function showWeather(response) {
   todaysLowTemp.innerHTML = Math.round(response.data.main.temp_min);
   let weatherIcon = document.querySelector("#main-weather-icon");
   let weatherDescription = response.data.weather.description;
-  if (weatherDescription === "clear sky") {
-    weatherIcon.innerHTML = "☀";
-  } else if (weatherDescription === "broken clouds") {
-    weatherIcon.innerHTML = "⛅";
-  } else if (weatherDescription === "overcast clouds") {
-    weatherIcon.innerHTML = "☁";
-  } else if (weatherDescription === "light rain") {
-    weatherIcon.innerHTML = "☔";
-  }
 }
 function searchCity(city) {
   let apiKey = "ecdc34b15a757eb8ea71f46be9b2f189";
