@@ -50,7 +50,12 @@ function currentLocationWeather(response) {
   let todaysLowTemp = document.querySelector("#today-low-temp");
   todaysLowTemp.innerHTML = Math.round(response.data.main.temp_min);
   let weatherIcon = document.querySelector("#main-weather-icon");
-  let weatherDescription = response.data.weather.description;
+  let weatherDescription = response.data.weather[0].description;
+  weatherIcon.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  weatherIcon.setAttribute("alt", weatherDescription);
 }
 function getLocation(position) {
   let latitude = position.coords.latitude;
@@ -77,7 +82,12 @@ function showWeather(response) {
   let todaysLowTemp = document.querySelector("#today-low-temp");
   todaysLowTemp.innerHTML = Math.round(response.data.main.temp_min);
   let weatherIcon = document.querySelector("#main-weather-icon");
-  let weatherDescription = response.data.weather.description;
+  let weatherDescription = response.data.weather[0].description;
+  weatherIcon.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  weatherIcon.setAttribute("alt", weatherDescription);
 }
 function searchCity(city) {
   let apiKey = "ecdc34b15a757eb8ea71f46be9b2f189";
