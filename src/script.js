@@ -36,38 +36,6 @@ function formatDate(date) {
   let dateAndTime = document.querySelector("#date-and-time");
   dateAndTime.innerHTML = `<small>${currentDay}, ${currentMonth} ${currentDate} | ${currentHour}:${currentMinutes}</small>`;
 }
-function currentLocationWeather(response) {
-  let currentLocationCity = document.querySelector("#city-location");
-  currentLocationCity.innerHTML = response.data.name;
-  let currentCityTemp = document.querySelector("#temperature-of-city-location");
-  currentCityTemp.innerHTML = Math.round(response.data.main.temp);
-  let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = response.data.main.humidity;
-  let windSpeed = document.querySelector("#wind-speed");
-  windSpeed.innerHTML = Math.round(response.data.wind.speed);
-  let todaysHighTemp = document.querySelector("#today-high-temp");
-  todaysHighTemp.innerHTML = Math.round(response.data.main.temp_max);
-  let todaysLowTemp = document.querySelector("#today-low-temp");
-  todaysLowTemp.innerHTML = Math.round(response.data.main.temp_min);
-  let weatherIcon = document.querySelector("#main-weather-icon");
-  let weatherDescription = response.data.weather[0].description;
-  weatherIcon.setAttribute(
-    "src",
-    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
-  weatherIcon.setAttribute("alt", weatherDescription);
-}
-function getLocation(position) {
-  let latitude = position.coords.latitude;
-  let longitude = position.coords.longitude;
-  let apiKey = "ecdc34b15a757eb8ea71f46be9b2f189";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
-  axios.get(`${apiUrl}`).then(currentLocationWeather);
-}
-function getPosition(event) {
-  event.preventDefault();
-  navigator.geolocation.getCurrentPosition(getLocation);
-}
 function showWeather(response) {
   let searchedCity = document.querySelector("#city-location");
   searchedCity.innerHTML = response.data.name;
@@ -89,6 +57,17 @@ function showWeather(response) {
   );
   weatherIcon.setAttribute("alt", weatherDescription);
 }
+function getLocation(position) {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  let apiKey = "ecdc34b15a757eb8ea71f46be9b2f189";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
+  axios.get(`${apiUrl}`).then(showWeather);
+}
+function getPosition(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(getLocation);
+}
 function searchCity(city) {
   let apiKey = "ecdc34b15a757eb8ea71f46be9b2f189";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
@@ -100,26 +79,27 @@ function handleSubmit(event) {
   let city = cityImput.value;
   searchCity(city);
 }
-// function changeTempMeasurement(event) {
-// event.preventDefault();
-// let temp = document.querySelector("#temperature-of-city-location");
-// let fahrenheitTemp = 71;
-// let celsiusTemp = 22;
-// if (changeButton.innerHTML === "F°") {
-// changeButton.innerHTML = "C°";
-// temp.innerHTML = celsiusTemp;
-// } else if (changeButton.innerHTML === "C°") {
-// changeButton.innerHTML = "F°";
-// temp.innerHTML = fahrenheitTemp;
-// }
-// }
+function changeTempMeasurement(event) {
+  event.preventDefault();
+  let temp = document.querySelector("#temperature-of-city-location");
+  let fahrenheitTemp = 71;
+  let celsiusTemp = 22;
+  if (changeButton.innerHTML === "F°") {
+    changeButton.innerHTML = "C°";
+    temp.innerHTML = celsiusTemp;
+  } else if (changeButton.innerHTML === "C°") {
+    changeButton.innerHTML = "F°";
+    temp.innerHTML = fahrenheitTemp;
+  }
+}
 let now = new Date();
 let searchForm = document.querySelector("#search-form");
 let currentLocationButton = document.querySelector("#current-location-button");
-// let changeButton = document.querySelector("button");
-searchCity("Los Angeles");
-formatDate(now);
+let changeButton = document.querySelector("button");
+
 currentLocationButton.addEventListener("click", getPosition);
 searchForm.addEventListener("submit", handleSubmit);
+changeButton.addEventListener("click", changeTempMeasurement);
 
-// changeButton.addEventListener("click", changeTempMeasurement);
+searchCity("Los Angeles");
+formatDate(now);
