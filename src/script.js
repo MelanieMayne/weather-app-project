@@ -41,6 +41,9 @@ function showWeather(response) {
   searchedCity.innerHTML = response.data.name;
   let cityTemp = document.querySelector("#temperature-of-city-location");
   cityTemp.innerHTML = Math.round(response.data.main.temp);
+
+  fahrenheitTemp = response.data.main.temp;
+
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = response.data.main.humidity;
   let windSpeed = document.querySelector("#wind-speed");
@@ -82,20 +85,20 @@ function handleSubmit(event) {
 function changeTempMeasurement(event) {
   event.preventDefault();
   let temp = document.querySelector("#temperature-of-city-location");
-  let fahrenheitTemp = 71;
-  let celsiusTemp = 22;
+  let celsiusTemp = Math.round(((fahrenheitTemp - 32) * 5) / 9);
   if (changeButton.innerHTML === "F°") {
     changeButton.innerHTML = "C°";
     temp.innerHTML = celsiusTemp;
   } else if (changeButton.innerHTML === "C°") {
     changeButton.innerHTML = "F°";
-    temp.innerHTML = fahrenheitTemp;
+    temp.innerHTML = Math.round(fahrenheitTemp);
   }
 }
 let now = new Date();
 let searchForm = document.querySelector("#search-form");
 let currentLocationButton = document.querySelector("#current-location-button");
-let changeButton = document.querySelector("button");
+let changeButton = document.querySelector("#temp-unit-button");
+let fahrenheitTemp = null;
 
 currentLocationButton.addEventListener("click", getPosition);
 searchForm.addEventListener("submit", handleSubmit);
