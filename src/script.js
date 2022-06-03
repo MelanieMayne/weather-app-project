@@ -36,6 +36,36 @@ function formatDate(date) {
   let dateAndTime = document.querySelector("#date-and-time");
   dateAndTime.innerHTML = `<small>${currentDay}, ${currentMonth} ${currentDate} | ${currentHour}:${currentMinutes}</small>`;
 }
+function showForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="card-group">`;
+  let days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    <div class="card text-center">
+      <div class="card-body weekday-cards">
+        <h5 class="card-title weekday">${day}</h5>
+        <p class="card-text small-weather-icon">⛅</p>
+        <p class="card-text">
+          <small class="text-muted small-high-low">H: 64° L: 57°</small>
+        </p>
+      </div>
+    </div>
+    `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
 function showWeather(response) {
   let searchedCity = document.querySelector("#city-location");
   searchedCity.innerHTML = response.data.name;
@@ -116,5 +146,6 @@ currentLocationButton.addEventListener("click", getPosition);
 searchForm.addEventListener("submit", handleSubmit);
 changeButton.addEventListener("click", changeTempMeasurement);
 
+showForecast();
 searchCity("Los Angeles");
 formatDate(now);

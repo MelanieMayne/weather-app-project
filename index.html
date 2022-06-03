@@ -26,117 +26,69 @@
   </head>
   <body>
     <div class="container">
-      <div class="card">
-        <div class="card-body body-of-app">
-          <header>
-            <button id="current-location-button">
-              <i class="bi bi-geo-alt-fill"></i>
-            </button>
-            <button id="temp-unit-button">F°</button>
-            <form class="mx-auto" style="width: 285px" id="search-form">
-              <input
-                type="text"
-                placeholder="Enter a city"
-                id="search-bar-input"
-                autocomplete="off"
-              />
-              <input type="submit" value="Search" id="searh-button-input" />
-            </form>
-          </header>
-          <div class="row g-3">
-            <div class="col-4 text-center">
-              <img
-                id="main-weather-icon"
-                src="https://openweathermap.org/img/wn/01d@2x.png"
-                alt="clear sky"
-              />
-            </div>
-            <div class="col-4 text-center">
-              <div class="row">
-                <div class="col" id="date-and-time">
-                  <small></small>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col" id="current-location">
-                  <span id="city-location"></span>
-                  <span id="temperature-of-city-location"></span>°
-                </div>
-              </div>
-              <div class="row">
-                <div class="col" id="main-high-low">
-                  <small>
-                    H: <span id="today-high-temp"></span>° L:<span
-                      id="today-low-temp"
-                    ></span
-                    >°
-                  </small>
-                </div>
+      <div class="body-of-app">
+        <header>
+          <button id="current-location-button">
+            <i class="bi bi-geo-alt-fill"></i>
+          </button>
+          <button id="temp-unit-button">F°</button>
+          <form class="mx-auto" style="width: 285px" id="search-form">
+            <input
+              type="text"
+              placeholder="Enter a city"
+              id="search-bar-input"
+              autocomplete="off"
+            />
+            <input type="submit" value="Search" id="searh-button-input" />
+          </form>
+        </header>
+        <div class="row g-3">
+          <div class="col-4 text-center">
+            <img
+              id="main-weather-icon"
+              src="https://openweathermap.org/img/wn/01d@2x.png"
+              alt="clear sky"
+            />
+          </div>
+          <div class="col-4 text-center">
+            <div class="row">
+              <div class="col" id="date-and-time">
+                <small></small>
               </div>
             </div>
-            <div class="col-4">
-              <div class="row">
-                <div class="col weather-label">Wind</div>
-                <div class="col text-center weather-label-data">
-                  <span id="wind-speed"></span>mph
-                </div>
+            <div class="row">
+              <div class="col" id="current-location">
+                <span id="city-location"></span>
+                <span id="temperature-of-city-location"></span>°
               </div>
-              <div class="row">
-                <div class="col weather-label">Humidity</div>
-                <div class="col text-center weather-label-data">
-                  <span id="humidity"></span>%
-                </div>
+            </div>
+            <div class="row">
+              <div class="col" id="main-high-low">
+                <small>
+                  H: <span id="today-high-temp"></span>° L:<span
+                    id="today-low-temp"
+                  ></span
+                  >°
+                </small>
               </div>
             </div>
           </div>
-          <div class="card-group">
-            <div class="card text-center">
-              <div class="card-body weekday-cards">
-                <h5 class="card-title weekday">Wednesday</h5>
-                <p class="card-text small-weather-icon">⛅</p>
-                <p class="card-text">
-                  <small class="text-muted small-high-low">H: 64° L: 57°</small>
-                </p>
+          <div class="col-4">
+            <div class="row">
+              <div class="col weather-label">Wind</div>
+              <div class="col text-center weather-label-data">
+                <span id="wind-speed"></span>mph
               </div>
             </div>
-            <div class="card text-center">
-              <div class="card-body weekday-cards">
-                <h5 class="card-title weekday">Thursday</h5>
-                <p class="card-text small-weather-icon">⛅</p>
-                <p class="card-text">
-                  <small class="text-muted small-high-low">H: 66° L: 56°</small>
-                </p>
-              </div>
-            </div>
-            <div class="card text-center">
-              <div class="card-body weekday-cards">
-                <h5 class="card-title weekday">Friday</h5>
-                <p class="card-text small-weather-icon sun-icon">☀</p>
-                <p class="card-text">
-                  <small class="text-muted small-high-low">H: 69° L: 53°</small>
-                </p>
-              </div>
-            </div>
-            <div class="card text-center">
-              <div class="card-body weekday-cards">
-                <h5 class="card-title weekday">Saturday</h5>
-                <p class="card-text small-weather-icon sun-icon">☀</p>
-                <p class="card-text">
-                  <small class="text-muted small-high-low">H: 73° L: 54°</small>
-                </p>
-              </div>
-            </div>
-            <div class="card text-center">
-              <div class="card-body weekday-cards">
-                <h5 class="card-title weekday">Sunday</h5>
-                <p class="card-text small-weather-icon sun-icon">☀</p>
-                <p class="card-text">
-                  <small class="text-muted small-high-low">H: 69° L: 56°</small>
-                </p>
+            <div class="row">
+              <div class="col weather-label">Humidity</div>
+              <div class="col text-center weather-label-data">
+                <span id="humidity"></span>%
               </div>
             </div>
           </div>
         </div>
+        <div class="card-group" id="forecast"></div>
       </div>
     </div>
     <footer>

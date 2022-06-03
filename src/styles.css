@@ -9,7 +9,7 @@ header {
   margin-bottom: 25px;
 }
 footer {
-  margin-left: 80px;
+  margin-left: 140px;
 }
 #temp-unit-button {
   text-align: center;
@@ -54,7 +54,11 @@ footer {
 }
 
 .body-of-app {
+  max-width: 1000px;
+  display: block;
+  margin: auto;
   border: #0099ff solid 1px;
+  border-radius: 1%;
   background: linear-gradient(
     180deg,
     rgb(255, 255, 255) 16%,
@@ -75,7 +79,7 @@ footer {
 }
 .weekday {
   color: #0099ff;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 30px;
   margin: 10px 0;
 }
@@ -85,7 +89,7 @@ footer {
 }
 .small-high-low {
   line-height: 20px;
-  font-size: 14px;
+  font-size: 13px;
   margin: 10px 0;
   color: rgb(0, 0, 0, 0.75);
 }
@@ -96,7 +100,9 @@ footer {
   border: 1px solid #0099ff;
   background-color: rgb(0, 153, 255, 0.15);
   margin: 1px;
+  width: max-content;
 }
 .card-group {
   margin: 0 10px 10px 10px;
+  padding-left: 10px;
 }
