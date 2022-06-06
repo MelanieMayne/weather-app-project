@@ -36,39 +36,55 @@ function formatDate(date) {
   let dateAndTime = document.querySelector("#date-and-time");
   dateAndTime.innerHTML = `<small>${currentDay}, ${currentMonth} ${currentDate} | ${currentHour}:${currentMinutes}</small>`;
 }
-function showForecast() {
-  let forecastElement = document.querySelector("#forecast");
-  let forecastHTML = `<div class="card-group">`;
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
   let days = [
+    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
-    "Sunday",
   ];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-    <div class="card text-center">
-      <div class="card-body weekday-cards">
-        <h5 class="card-title weekday">${day}</h5>
-        <p class="card-text small-weather-icon">⛅</p>
+
+  return days[day];
+}
+function showForecast(response) {
+  console.log(response.data.daily);
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="card-group">`;
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
+       <div class="card text-center">
+        <div class="card-body weekday-cards">
+        <h5 class="card-title weekday">${formatDay(forecastDay.dt)}</h5>
+        <p class="card-text small-weather-icon"><img src="https://openweathermap.org/img/wn/${
+          forecastDay.weather[0].icon
+        }@2x.png" alt=""/>
+        </p>
         <p class="card-text">
-          <small class="text-muted small-high-low">H: 64° L: 57°</small>
+          <small class="text-muted small-high-low">H: ${Math.round(
+            forecastDay.temp.max
+          )}° L: ${Math.round(forecastDay.temp.min)}°</small>
         </p>
       </div>
     </div>
     `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
 function getForecast(coordinates) {
   let apiKey = "ecdc34b15a757eb8ea71f46be9b2f189";
-  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}$units=imperial`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
   axios.get(`${apiUrl}`).then(showForecast);
 }
 function showWeather(response) {
@@ -152,6 +168,5 @@ currentLocationButton.addEventListener("click", getPosition);
 searchForm.addEventListener("submit", handleSubmit);
 changeButton.addEventListener("click", changeTempMeasurement);
 
-showForecast();
-searchCity("Los Angeles");
 formatDate(now);
+searchCity("Los Angeles");

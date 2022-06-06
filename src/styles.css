@@ -9,7 +9,7 @@ header {
   margin-bottom: 25px;
 }
 footer {
-  margin-left: 140px;
+  margin-left: 240px;
 }
 #temp-unit-button {
   text-align: center;
@@ -54,7 +54,7 @@ footer {
 }
 
 .body-of-app {
-  max-width: 1000px;
+  max-width: 800px;
   display: block;
   margin: auto;
   border: #0099ff solid 1px;
@@ -93,9 +93,6 @@ footer {
   margin: 10px 0;
   color: rgb(0, 0, 0, 0.75);
 }
-.sun-icon {
-  color: #ffd337;
-}
 .weekday-cards {
   border: 1px solid #0099ff;
   background-color: rgb(0, 153, 255, 0.15);
@@ -104,5 +101,5 @@ footer {
 }
 .card-group {
   margin: 0 10px 10px 10px;
-  padding-left: 10px;
+  padding-left: 15px;
 }
