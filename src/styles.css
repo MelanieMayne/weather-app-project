@@ -34,7 +34,9 @@ footer {
   background: #0099ff;
 }
 #main-weather-icon {
-  font-size: 60px;
+  width: 125px;
+  height: 125px;
+  margin-top: -25px;
 }
 #date-and-time {
   line-height: 25px;
