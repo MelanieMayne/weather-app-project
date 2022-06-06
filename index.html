@@ -31,7 +31,6 @@
           <button id="current-location-button">
             <i class="bi bi-geo-alt-fill"></i>
           </button>
-          <button id="temp-unit-button">F°</button>
           <form class="mx-auto" style="width: 285px" id="search-form">
             <input
               type="text"
@@ -59,7 +58,10 @@
             <div class="row">
               <div class="col" id="current-location">
                 <span id="city-location"></span>
-                <span id="temperature-of-city-location"></span>°
+                <span id="temperature-of-city-location"></span>°<small
+                  id="units"
+                  >F</small
+                >
               </div>
             </div>
             <div class="row">

@@ -52,7 +52,6 @@ function formatDay(timestamp) {
   return days[day];
 }
 function showForecast(response) {
-  console.log(response.data.daily);
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="card-group">`;
@@ -62,21 +61,23 @@ function showForecast(response) {
       forecastHTML =
         forecastHTML +
         `
-       <div class="card text-center">
-        <div class="card-body weekday-cards">
-        <h5 class="card-title weekday">${formatDay(forecastDay.dt)}</h5>
-        <p class="card-text small-weather-icon"><img src="https://openweathermap.org/img/wn/${
-          forecastDay.weather[0].icon
-        }@2x.png" alt=""/>
-        </p>
-        <p class="card-text">
-          <small class="text-muted small-high-low">H: ${Math.round(
-            forecastDay.temp.max
-          )}° L: ${Math.round(forecastDay.temp.min)}°</small>
-        </p>
-      </div>
-    </div>
-    `;
+        <div class="card text-center">
+          <div class="card-body weekday-cards">
+            <h5 class="card-title weekday">${formatDay(forecastDay.dt)}</h5>
+            <p class="card-text small-weather-icon"><img src="https://openweathermap.org/img/wn/${
+              forecastDay.weather[0].icon
+            }@2x.png" alt="${forecastDay.weather[0].description}"/>
+            </p>
+            <p class="card-text">
+            <small class="text-muted small-high-low">H: <span id="forecast-high-temp">${Math.round(
+              forecastDay.temp.max
+            )}</span>° L: <span id="forecast-low-temp">${Math.round(
+          forecastDay.temp.min
+        )}</span>°</small>
+            </p>
+          </div>
+        </div>
+        `;
     }
   });
   forecastHTML = forecastHTML + `</div>`;
@@ -92,11 +93,6 @@ function showWeather(response) {
   searchedCity.innerHTML = response.data.name;
   let cityTemp = document.querySelector("#temperature-of-city-location");
   cityTemp.innerHTML = Math.round(response.data.main.temp);
-
-  fahrenheitTemp = response.data.main.temp;
-  fahrenheitHighTemp = response.data.main.temp_max;
-  fahrenheitLowTemp = response.data.main.temp_min;
-
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = response.data.main.humidity;
   let windSpeed = document.querySelector("#wind-speed");
@@ -136,37 +132,14 @@ function handleSubmit(event) {
   let city = cityImput.value;
   searchCity(city);
 }
-function changeTempMeasurement(event) {
-  event.preventDefault();
-  let temp = document.querySelector("#temperature-of-city-location");
-  let highTemp = document.querySelector("#today-high-temp");
-  let lowTemp = document.querySelector("#today-low-temp");
-  let celsiusHighTemp = Math.round(((fahrenheitHighTemp - 32) * 5) / 9);
-  let celsiusLowTemp = Math.round(((fahrenheitLowTemp - 32) * 5) / 9);
-  let celsiusTemp = Math.round(((fahrenheitTemp - 32) * 5) / 9);
-  if (changeButton.innerHTML === "F°") {
-    changeButton.innerHTML = "C°";
-    temp.innerHTML = celsiusTemp;
-    highTemp.innerHTML = celsiusHighTemp;
-    lowTemp.innerHTML = celsiusLowTemp;
-  } else if (changeButton.innerHTML === "C°") {
-    changeButton.innerHTML = "F°";
-    temp.innerHTML = Math.round(fahrenheitTemp);
-    highTemp.innerHTML = Math.round(fahrenheitHighTemp);
-    lowTemp.innerHTML = Math.round(fahrenheitLowTemp);
-  }
-}
+
 let now = new Date();
 let searchForm = document.querySelector("#search-form");
 let currentLocationButton = document.querySelector("#current-location-button");
 let changeButton = document.querySelector("#temp-unit-button");
-let fahrenheitTemp = null;
-let fahrenheitHighTemp = null;
-let fahrenheitLowTemp = null;
 
 currentLocationButton.addEventListener("click", getPosition);
 searchForm.addEventListener("submit", handleSubmit);
-changeButton.addEventListener("click", changeTempMeasurement);
 
 formatDate(now);
 searchCity("Los Angeles");
