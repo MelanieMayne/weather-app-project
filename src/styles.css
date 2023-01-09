@@ -22,11 +22,11 @@ header {
   position: relative;
   bottom: 12px;
 }
-#search-bar {
-  margin: 10px 0;
+#search-form {
+  display: flex;
 }
 #search-button {
-  margin: 10px 0;
+  display: inline-flex;
   color: #fff;
   background: #0099ff;
 }
