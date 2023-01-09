@@ -10,9 +10,6 @@ header {
   margin-top: 10px;
   padding-right: 7px;
 }
-footer {
-  max-width: 800px;
-}
 #current-location-button {
   text-align: center;
   border: 10px, solid, #0099ff;
@@ -104,4 +101,7 @@ footer {
 .card-group {
   margin: 0 10px 10px 10px;
   padding-left: 15px;
+}
+.footer {
+text-align: center;
 }
