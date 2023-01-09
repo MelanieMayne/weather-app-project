@@ -11,7 +11,7 @@ header {
   padding-right: 7px;
 }
 footer {
-  margin-left: 240px;
+  max-width: 800px;
 }
 #current-location-button {
   text-align: center;
