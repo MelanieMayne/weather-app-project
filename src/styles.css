@@ -106,3 +106,17 @@ header {
 text-align: center;
 }
 
+@media (max-width: 850px) {
+  .card-body {
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .extra-weather {
+    display: none;
+  }
+  #main-weather-icon {
+    margin-top: 0;
+  }
+}
